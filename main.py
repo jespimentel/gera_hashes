@@ -12,7 +12,7 @@ def seleciona_pasta (title = 'Selecione a pasta...', initialdir = '.'):
     return pasta_escolhida
 
 pasta_principal = seleciona_pasta()
-print(f'Pasta escolhida: {pasta_principal}')
+print(f'\nPasta escolhida: {pasta_principal}')
 print('Aguarde...')
 
 # Relaciona os arquivos da pasta e da subpasta com os.walk()
@@ -30,7 +30,8 @@ for dirpath, dirname, files in arquivos:
             print(f'Não encontrado: {dirpath}/{file}')
 
 # Grava a lista de hashes em arquivo pickle
-with open('lista_hashes.pickle', 'wb') as arquivo:
+nome_arquivo = pasta_principal.split('/')[-1] + '.pickle'
+with open(nome_arquivo, 'wb') as arquivo:
     pickle.dump(lista_hashes, arquivo)
 
 # Calcula a quantidade de arquivos repetidos
@@ -39,4 +40,4 @@ n_repetidos = len(lista_hashes) - len(set(lista_hashes))
 print(f'\nArquivos lidos: {len(lista_hashes)}')
 print(f'Arquivos únicos: {len(set(lista_hashes))}')
 print(f'Arquivos repetidos: {n_repetidos}\n')
-print('Programa concluído!')
+print('Programa concluído!\n')
